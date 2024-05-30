@@ -1,0 +1,43 @@
+VentControll_Explaining_of_the_Wire_Logic:
+
+
+The project "Ventilation Control" manages 12 fans and LED strips with yellow/white lights.
+The fans have two modes: Silent mode and Full Power mode.
+
+The ESP32 board enables control via Wi-Fi for:
+
+Turning on/off 6 fans in the closet.
+Turning on/off 6 fans in the bathroom.
+Switching between Full Power and Silent mode for ventilation.
+Turning on/off the LED lights.
+Each set of 6 fans has an additional toggle switch to change the LED strip from yellow to white light and another switch to turn on/off an additional LED strip.
+
+System Overview:
+
+The system operates on a power supply of 220V, which is converted to 12V.
+
+The 12V positive wire is separated into 4 paths:
+
+Supplying 6 + 6 fans and LEDs.
+Supplying the first buck converter, which reduces the voltage to 5V for the ESP32 power supply.
+Supplying the second buck converter, which reduces the voltage to ~7V for "Silent mode".
+Supplying the LED strips.
+
+The ESP32 is connected to 4 relays with the following pins:
+
+Pin 26 (Orange wire): Controls the 1st relay for switching the bus from 12V to 7V for "Silent mode".
+Pin 27 (Violet wire): Controls the 2nd relay for turning on/off all LEDs.
+Pin 33  (Green wire): Controls the relay for turning on/off the 6 bathroom fans.
+Pin 34 (Yellow wire): Controls the relay for turning on/off the 6 closet fans.
+
+sThe 12V negative wiring is also separated into 4 paths:
+
+Supplying the first buck converter.
+Supplying the second buck converter.
+Supplying the 4th relay.
+Supplying 2 parallel toggle switches that can change the negative wire of the LEDs to switch between yellow and white light.
+
+Additionally, there are two more switches to cut the LED strip in half by cutting the positive wire supplying the LEDs.
+
+The black negative and grey positive wires on the scheme represent the 5V bus from the ESP32, which supplies power to all four relays.
+
