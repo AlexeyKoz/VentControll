@@ -41,3 +41,6 @@ Additionally, there are two more switches to cut the LED strip in half by cuttin
 
 The black negative and grey positive wires on the scheme represent the 5V bus from the ESP32, which supplies power to all four relays.
 
+
+
+To contact me, please visit AL7koz.com.
