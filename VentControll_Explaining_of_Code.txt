@@ -86,3 +86,6 @@ A meta tag for viewport settings.
 Basic CSS styling for the web page and buttons.
 A heading for the control panel.
 The current state and buttons for each GPIO pin (restroom vent, bath vent, high power ventilating, LED lights).
+
+
+To contact me, please visit AL7koz.com.
