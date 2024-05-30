@@ -1,0 +1,88 @@
+This code sets up a web server on an ESP32 to control a ventilating system via Wi-Fi. 
+It handles incoming HTTP requests to toggle GPIO pins, updating the states of fans and LEDs. 
+The web interface displays the current states and provides buttons to control the devices.
+
+Wi-Fi Setup and Initialization
+Libraries and Credentials:
+
+The Wi-Fi library is included to enable Wi-Fi functionality.
+Wi-Fi credentials (SSID and password) are defined as constants.
+
+Server Setup:
+
+A web server is started on port 80. For multiple projects, it's preferable to change the port number to something higher like 81.
+State Variables:
+
+Strings (output26State, output27State, output32State, output33State) are used to keep track of the states (on/off) of the different GPIO pins.
+
+Pin Assignments:
+
+GPIO pins 26, 27, 32, and 33 are assigned to control different devices.
+
+Timing Variables:
+
+currentTime and previousTime are used to manage timeouts in the loop.
+timeoutTime is set to 2000 milliseconds (2 seconds).
+setup Function
+
+Serial Communication:
+
+Initializes serial communication for debugging with a baud rate of 115200.
+
+Pin Initialization:
+
+Sets GPIO pins 26, 27, 32, and 33 as outputs.
+Initializes these pins to LOW.
+
+Wi-Fi Connection:
+
+Connects to the Wi-Fi network using the provided SSID and password.
+Continuously prints dots (.) until the connection is established.
+Once connected, it prints the local IP address.
+
+Start Server:
+
+Starts the web server.
+loop Function
+
+Listen for Clients:
+
+Continuously checks for incoming client connections.
+
+Handle New Client:
+
+When a new client connects, it updates currentTime and previousTime.
+Prints a message to the serial port indicating a new client has connected.
+Initializes an empty string currentLine to hold incoming data from the client.
+
+Read Client Data:
+
+While the client is connected and within the timeout period:
+Reads bytes from the client.
+Prints each byte to the serial monitor.
+Appends each byte to the header string.
+If a newline character is detected, it indicates the end of the client's HTTP request.
+Process HTTP Request:
+
+Sends an HTTP response header indicating a successful request and the content type.
+Checks the header string for specific GET requests to control the GPIO pins:
+Turns GPIO pins on or off based on the request and updates the corresponding state variables.
+Prints the state change to the serial monitor.
+
+Send HTML Response:
+
+Sends an HTML web page as the response.
+The web page includes buttons to control the state of the GPIO pins.
+The current state of each pin (on/off) is displayed, along with buttons to toggle the state.
+
+Manage Connection:
+
+Clears the header string.
+Closes the client connection and prints a message indicating the client has disconnected.
+HTML/CSS for Web Interface
+
+The HTML response includes:
+A meta tag for viewport settings.
+Basic CSS styling for the web page and buttons.
+A heading for the control panel.
+The current state and buttons for each GPIO pin (restroom vent, bath vent, high power ventilating, LED lights).
